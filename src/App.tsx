@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Tree from './Tree';
 
 function App() {
+  const [treeData, setTreeData] = useState<any>()
+  useEffect(() => {
+    fetch('http://localhost:4000').then(res => res.json()).then(data => setTreeData(data))
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +23,7 @@ function App() {
         >
           Learn React
         </a>
+        <Tree data={treeData} />
       </header>
     </div>
   );
